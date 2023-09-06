@@ -8,7 +8,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DesignationController;
-use App\Models\Product;
+use App\Models\Post;
+use MongoDB\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,17 @@ use App\Models\Product;
 |
 */
 
-Route::get('/mongo', function () {
-   $products = Product::all();
-   echo '<pre>'; print_r($products); exit;
+Route::get('/post', function () {
+
+    $post = new Post();
+    $post->name = 'abcd';
+    $post->detail = 'xyz';
+    $post->save();
+
+    $posts = Post::all();
+   echo '<pre>'; print_r(count($posts)); exit;
+
+    echo '<pre>'; print_r('done'); exit;
 });
 
 Route::get('/', function () {
