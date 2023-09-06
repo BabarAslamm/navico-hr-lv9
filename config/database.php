@@ -17,6 +17,7 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -89,8 +90,28 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
+
+        // 'mongodb' => [
+        //     'driver' => 'mongodb',
+        //     'host' => env('DB_HOST', '127.0.0.1'), // MongoDB host
+        //     'port' => env('DB_PORT', 27017), // MongoDB port
+        //     'database' => env('DB_DATABASE', 'homestead'), // Database name
+        //     'username' => env('DB_USERNAME', 'homestead'), // MongoDB username
+        //     'password' => env('DB_PASSWORD', 'secret'), // MongoDB password
+        //     'options' => [
+        //         'appname' => 'homestead', // Additional options
+        //     ],
+        // ],
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('MONGO_DB_HOST', 'localhost'),
+            'port'     => env('MONGO_DB_PORT', 27017),
+            'database' => env('MONGO_DB_DATABASE'),
+            'username' => env('MONGO_DB_USERNAME'),
+            'password' => env('MONGO_DB_PASSWORD'),
+            'options'  => []
         ],
 
     ],
