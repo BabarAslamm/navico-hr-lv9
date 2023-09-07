@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Product extends Model
+class Location extends Model
 {
     use HasFactory;
 
     protected $connection = 'mongodb';
-	protected $collection = 'posts';
-
+	protected $collection = 'locations';
 
     protected $fillable = [
-        'name', 'detail'
+        'location_name', 'mail_alias', 'created_by', 'modified_by'
     ];
+
 }
