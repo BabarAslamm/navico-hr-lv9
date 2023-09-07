@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Designation;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -44,13 +45,19 @@ class DesignationController extends Controller
 
         if($request->designation_id != ''){
 
-            $designation = Designation::where('id', $request->designation_id)->first();
-            $designation->designation_name = $request->designation_name;
-            $designation->mail_alias = $request->mail_alias;
-            $designation->modified_by = auth()->user()->id;
-            $designation->save();
+            try {
+                ###### Update designation record
+                $designation = Designation::findOrFail($request->designation_id);
+                $designation->designation_name = $request->designation_name;
+                $designation->mail_alias = $request->mail_alias;
+                $designation->modified_by = auth()->user()->id;
+                $designation->save();
 
-            return redirect()->route('designations.index')->with('success', $designation->designation_name.' Designation Updated Successfully');
+                return redirect()->route('designations.index')->with('success', $designation->designation_name.' Designation Updated Successfully');
+
+            }catch (\Exception $e) {
+                return redirect()->route('designations.index')->with('error', $e);
+            }
 
         }else{
 
@@ -87,8 +94,15 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        $designation = Designation::where('id', $id)->first();
-        return view('designations.create', compact('designation'));
+
+        try {
+
+            $designation = Designation::findOrFail($id);
+            return view('designations.create', compact('designation'));
+
+        }catch (\Exception $e) {
+            return redirect()->route('designations.index')->with('error', $e);
+        }
     }
 
     /**

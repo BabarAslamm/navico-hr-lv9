@@ -34,6 +34,8 @@
                         <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                         {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li> --}}
                         <li><a class="nav-link" href="{{ route('designations.index') }}">Designations</a></li>
+                        <li><a class="nav-link" href="{{ route('locations.index') }}">Locations</a></li>
+                        <li><a class="nav-link" href="{{ route('job-status.index') }}">Job Status</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

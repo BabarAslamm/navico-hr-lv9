@@ -9,11 +9,15 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
-
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
+    // protected $primaryKey = 'id';
+    protected $connection = 'mongodb';
+	protected $collection = 'users';
 
     /**
      * The attributes that are mass assignable.
