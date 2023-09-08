@@ -36,6 +36,7 @@
                         <li><a class="nav-link" href="{{ route('designations.index') }}">Designations</a></li>
                         <li><a class="nav-link" href="{{ route('locations.index') }}">Locations</a></li>
                         <li><a class="nav-link" href="{{ route('job-status.index') }}">Job Status</a></li>
+                        <li><a class="nav-link" href="{{ route('employees.index') }}">Employees</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

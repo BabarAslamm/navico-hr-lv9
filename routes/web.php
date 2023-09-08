@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\JobStatusController;
+use App\Http\Controllers\EmployeeController;
 use App\Models\Post;
 use MongoDB\Client;
 use App\Models\CustomRole;
@@ -58,6 +59,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('designations', DesignationController::class);
     Route::resource('locations', LocationController::class);
     Route::resource('job-status', JobStatusController::class);
+    Route::resource('employees', EmployeeController::class);
 });
 
 
