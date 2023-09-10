@@ -9,13 +9,13 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-9">
                     <div class="pull-left ml-4 mb-4">
-                        <h2> Job Statuses List</h2>
+                        <h2> Address List</h2>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    {{-- <div class="">
-                        <a class="btn btn-success" href="{{ route('employees.create') }}"> + Add Employee</a>
-                    </div> --}}
+                    <div class="">
+                        <a class="btn btn-success" href="{{ route('address.create') }}"> + Add Address</a>
+                    </div>
                 </div>
             </div>
 
@@ -42,36 +42,20 @@
                 @endif
 
                 <div class="row">
-                    @if(count($employees) > 0)
-                    @foreach ($employees as $employee)
+                    @foreach ($addresses as $address)
                         <div class="col-md-4">
                             <div class="card" style="width: 18rem;">
                                 <div class="card-body">
-                                <center class="mt-1 mb-1">
-                                    <h4>Employee : </h4>
-                                </center>
-                                <span> <b>First Name : </b>{{ $employee->first_name }}</span><br>
-                                <span> <b>Last Name : </b>{{ $employee->last_name }}</span><br>
-                                <span> <b>Email : </b>{{ $employee->email }}</span><br>
-                                <span> <b>Phone: </b>{{ $employee->phone }}</span><br>
 
-                               <center class="mt-1">
-                                <h4>Address : </h4>
-                               </center>
-                                <span><b>Street : </b>{{ $employee->address->street }}</span><br>
-                                <span><b>City : </b>{{ $employee->address->city }}</span><br>
-                                <span><b>State : </b>{{ $employee->address->state }}</span><br>
-                                <span><b>Country : </b>{{ $employee->address->country }}</span><br>
-
-
-                                <center class="mt-1">
-                                    <h4>Location : </h4>
-                                </center>
-                                <span><b>Country : </b>{{ $employee->location->location_name }}</span><br>
+                                <span> <b>Street : </b>{{ $address->street }}</span><br>
+                                <span> <b>City: </b>{{ $address->city }}</span><br>
+                                <span> <b>State : </b>{{ $address->state }}</span><br>
+                                <span> <b>Country: </b>{{ $address->country }}</span><br>
+                                <span> <b>Zip: </b>{{ $address->zip }}</span><br>
 
                                 <br>
-                                <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form method="POST" action="{{ route('employees.destroy', $employee->id) }}" style="display: inline;">
+                                <a href="{{ route('address.edit', $address->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form method="POST" action="{{ route('address.destroy', $address->id) }}" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
 
@@ -81,7 +65,6 @@
                             </div>
                         </div>
                     @endforeach
-                    @endif
                 </div>
             </div>
 

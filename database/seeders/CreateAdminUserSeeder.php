@@ -24,7 +24,7 @@ class CreateAdminUserSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        // $role = Role::create(['name' => 'Admin']);
         // $role = CustomRole::create(['name' => 'Admin']);
 
 

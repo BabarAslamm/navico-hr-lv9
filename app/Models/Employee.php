@@ -15,6 +15,16 @@ class Employee extends Model
 
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'phone'
+        'first_name', 'last_name', 'email', 'phone', 'user_id', 'address_id', 'location_id'
     ];
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id', '_id');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id', '_id');
+    }
 }

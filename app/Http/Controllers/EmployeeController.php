@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Employee;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::with('address', 'location')->get();
         return view('employees.index', compact('employees'));
     }
 
@@ -28,6 +30,12 @@ class EmployeeController extends Controller
         return view('employees.create');
     }
 
+    public function employeeRegister($id)
+    {
+        $addresses = Address::all();
+        $locations = Location::all();
+        return view('employees.create', compact('id', 'addresses', 'locations'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +44,36 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address_id' => 'required',
+            'location_id' => 'required',
+
+        ]);
+
+        try {
+
+            $employee = new Employee();
+            $employee->user_id = $request->user_id;
+            $employee->first_name = $request->first_name;
+            $employee->last_name = $request->last_name;
+            $employee->email = $request->email;
+            $employee->phone = $request->phone;
+            $employee->address_id = $request->address_id;
+            $employee->location_id = $request->location_id;
+            $employee->save();
+
+            return redirect()->route('employees.index')->with('success', $employee->first_name.' Employee Created Successfully');
+
+        }catch (\Exception $e) {
+
+            return redirect()->route('employees.index')->with('error', $e);
+        }
+
     }
 
     /**
@@ -58,7 +95,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
