@@ -68,7 +68,7 @@ class LocationController extends Controller
             $location->modified_by = auth()->user()->id;
             $location->save();
 
-            return redirect()->route('designations.index')->with('success', $location->location_name.' Location Created Successfully');
+            return redirect()->route('locations.index')->with('success', $location->location_name.' Location Created Successfully');
         }
     }
 

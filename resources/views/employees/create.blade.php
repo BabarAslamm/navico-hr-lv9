@@ -29,7 +29,7 @@
 
                 <form action="{{ route('employees.store') }}" method="POST">
                     @csrf
-                    <input type="text" name="user_id" class="form-control" id="" value="{{ $id }}">
+                    <input type="hidden" name="user_id" class="form-control" id="" value="{{ $id }}">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="ml-3 mb-3">
@@ -44,7 +44,7 @@
 
                         <div class="col-md-6">
                             <div class="ml-3 mb-3">
-                                <label for="" class="">Employee Last Name *</label>
+                                <label for="" class="">Employee Last Name </label>
                                 <input type="text" class="form-control" name="last_name" placeholder="Last Name"
                                     value="{{ old('last_name') }}">
                                 @error('last_name')
@@ -53,16 +53,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="ml-3 mb-3">
-                                <label for="" class="">Employee Email *</label>
-                                <input type="text" class="form-control" name="email" placeholder="Email"
-                                    value="{{ old('email') }}">
-                                @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="col-md-6">
                             <div class="ml-3 mb-3">
@@ -75,35 +65,98 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group ml-3 mb-3">
-                                <label for="exampleFormControlSelect2">Employee Address</label>
-                                <select name="address_id" class="form-control form-select" id="exampleFormControlSelect2">
-                                    <option selected disabled value="">-- Select Address --</option>
-                                    @foreach ($addresses as $address)
-                                    <option value="{{ $address->id }}">{{ $address->street }} | {{ $address->city }} | {{ $address->state }} | {{ $address->country }} | {{ $address->zip }}</option>
-                                    @endforeach
 
-                                </select>
-                                @error('address_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                        <hr>
+                        <div class="col-md-12">
+                              <center class="mt-2 mb-2"><h3>Address</h3></center>
+                              <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ml-3 mb-3">
+                                            <label for="" class="">Street *</label>
+                                            <input type="text" class="form-control" name="street" placeholder="Street"
+                                                @if(isset($address)) value="{{ $address->street }}" @else value="{{ old('street') }}" @endif
+                                            >
+                                            @error('street')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-6">
+                                        <div class="ml-3 mb-3">
+                                            <label for="" class="">city *</label>
+                                            <input type="text" class="form-control" name="city" placeholder="City"
+                                                @if(isset($address)) value="{{ $address->city }}" @else value="{{ old('city') }}" @endif
+                                            >
+                                            @error('city')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="ml-3 mb-3">
+                                            <label for="" class="">State *</label>
+                                            <input type="text" class="form-control" name="state" placeholder="State"
+                                                @if(isset($address)) value="{{ $address->state }}" @else value="{{ old('state') }}" @endif
+                                            >
+                                            @error('state')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="ml-3 mb-3">
+                                            <label for="" class="">Country *</label>
+                                            <input type="text" class="form-control" name="country" placeholder="Country"
+                                                @if(isset($address)) value="{{ $address->country }}" @else value="{{ old('country') }}" @endif
+                                            >
+                                            @error('country')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="ml-3 mb-3">
+                                            <label for="" class="">Zip *</label>
+                                            <input type="text" class="form-control" name="zip" placeholder="Zip"
+                                                @if(isset($address)) value="{{ $address->zip }}" @else value="{{ old('zip') }}" @endif
+                                            >
+                                            @error('zip')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                               </div>
-                        </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group ml-3 mb-3">
-                                <label for="exampleFormControlSelect2">Employee Location</label>
-                                <select name="location_id" class="form-control form-select" id="exampleFormControlSelect2">
-                                    <option selected disabled value="">-- Select Location --</option>
-                                    @foreach ($locations as $location)
-                                    <option value="{{ $location->id }}">{{ $location->location_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('address_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+
+
+                        </div>
+                        <hr>
+
+
+
+
+                        <div class="col-md-12">
+                              <center class="mt-2 mb-2"><h3>Work Information</h3></center>
+                              <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group ml-3 mb-3">
+                                        <label for="exampleFormControlSelect2">Employee Location</label>
+                                        <select name="location_id" class="form-control form-select" id="exampleFormControlSelect2">
+                                            <option selected disabled value="">-- Select Location --</option>
+                                            @foreach ($locations as $location)
+                                            <option value="{{ $location->id }}">{{ $location->location_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('address_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                               </div>
                         </div>
 
